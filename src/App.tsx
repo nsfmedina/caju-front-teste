@@ -1,14 +1,14 @@
-import Router from "~/router";
-import { Header } from "./components/Header";
+import { AdmissionsProvider } from "./context/admissions";
+import { GeneralUIProvider } from "./context/general-ui";
+import AppContainer from "./components/containers/AppContainer";
 
 function App() {
   return (
-    <>
-      <Header>
-        <h1>Caju Front Teste</h1>
-      </Header>
-      <Router />
-    </>
+    <AdmissionsProvider>
+      <GeneralUIProvider>
+        <AppContainer />
+      </GeneralUIProvider>
+    </AdmissionsProvider>
   );
 }
 
