@@ -1,5 +1,5 @@
 import styled from "styled-components";
-const registrationStatusStyles: {
+const AdmissionStatusStyles: {
   [key in string]: { background: string; title: string };
 } = {
   REVIEW: {
@@ -27,7 +27,7 @@ export const Container = styled.div`
 export const Column = styled.div<{ status: any }>`
   height: auto;
   background-color: ${({ status }) =>
-    registrationStatusStyles[status].background};
+    AdmissionStatusStyles[status].background};
   border-radius: 32px;
   min-height: 80vh;
   max-height: 80vh;
@@ -35,7 +35,7 @@ export const Column = styled.div<{ status: any }>`
 
 export const TitleColumn = styled.h3<{ status: any }>`
   margin: 0px;
-  color: ${({ status }) => registrationStatusStyles[status].title};
+  color: ${({ status }) => AdmissionStatusStyles[status].title};
   margin: 24px;
 `;
 

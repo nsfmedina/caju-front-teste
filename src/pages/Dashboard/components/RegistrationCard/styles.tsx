@@ -1,6 +1,20 @@
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 
-export const Card = styled.div`
+const blinkLoading = keyframes`
+  0% {
+    background-color: rgba(255,255,255,0.65);
+  }
+  100% {
+    background-color: rgba(255,255,255,0.8);
+  }
+`;
+
+const blinkAnimation = css`
+  ${blinkLoading} 0.44s infinite alternate both;
+`
+
+export const Card = styled.div<{ $isLoading?: boolean}>`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -14,6 +28,19 @@ export const Card = styled.div`
     margin: 0;
   }
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+  &::before {
+    content: "";
+    visibility: ${props => props.$isLoading ? "visible" : "hidden"};
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    animation: ${blinkAnimation};
+    transition: .2s ease;
+  }
 `;
 
 export const IconAndText = styled.div`
