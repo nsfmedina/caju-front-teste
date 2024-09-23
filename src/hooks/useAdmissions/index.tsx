@@ -14,7 +14,11 @@ export default function useAdmissions() {
       const response = await axios.get(ENDPOINTS.GET_REGISTRATIONS);
       setAdmissions(response.data);
     } catch (error) {
-      console.error(`whoops`, error);
+      showNotification({ 
+        type: "error", 
+        title: "Oops!", 
+        description: `Houve um problema ao obter os registros.`
+      });
     }
   }
 
@@ -27,20 +31,24 @@ export default function useAdmissions() {
       });
       setAdmissions(response.data);
     } catch (error) {
-      console.error('whoops', error);
+      showNotification({ 
+        type: "error", 
+        title: "Oops!", 
+        description: `Houve um problema ao obter os registros com o CPF informado`
+      });
     }
   }
 
   const createAdmission = async (AdmissionEntry: AdmissionEntry, onSuccess = () => {}, onFailure = () => {}) => {
     try {
       startLoading();
-      const response: Admission = await axios.post(ENDPOINTS.POST_REGISTRATIONS, {
+      const response = await axios.post<Admission>(ENDPOINTS.POST_REGISTRATIONS, {
         ...AdmissionEntry
       });
       showNotification({ 
         type: "success", 
         title: "Novo registro adicionado", 
-        description: `A admissão de ${response.employeeName} foi incluída com sucesso.`
+        description: `A admissão de ${response.data.employeeName} foi incluída com sucesso.`
       });
       onSuccess();
     } catch (error) {
