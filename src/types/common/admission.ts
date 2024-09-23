@@ -1,0 +1,1 @@
+export type AdmissionStatus = "REVIEW" | "APPROVED" | "REPROVED";
