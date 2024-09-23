@@ -1,13 +1,23 @@
 import styled from "styled-components";
+import { ButtonType } from "~/types/common/button";
 
-const Button = styled.button`
+const Button = styled.button<{ $type?: ButtonType}>`
   outline: none;
   display: flex;
   align-items: center;
   border: none;
   border-radius: 36px;
   padding: 8px 32px;
-  background-color: #64a98c;
+  background-color: ${props => {
+    switch (props.$type) {
+      case 'success':
+        return `#64a98c`;
+      case 'error':
+        return '#b5342d';
+      default:
+        return '#64a98c';
+    }
+  }};
   cursor: pointer;
   height: 56px;
   color: #fff;

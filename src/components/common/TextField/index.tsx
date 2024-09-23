@@ -1,4 +1,6 @@
-import React, { InputHTMLAttributes } from "react";
+import InputMask from "@mona-health/react-input-mask";
+import { InputHTMLAttributes } from "react";
+import { RegisterOptions, UseFormRegister } from "react-hook-form";
 import styled from "styled-components";
 
 export const Input = styled.input`
@@ -20,16 +22,27 @@ export const Input = styled.input`
     box-shadow: inset 0 0 0 1px #007c89;
   }
 `;
+
 type Props = {
   label?: string;
   error?: string;
+  name: string;
+  register?: UseFormRegister<any>;
+  mask?: string;
+  formconfig?: RegisterOptions;
 } & InputHTMLAttributes<any>;
 
 const TextField = (props: Props) => {
   return (
     <div>
       <label htmlFor={props.id}>{props.label}</label>
-      <Input {...props} />
+      {props.mask ? (
+        <InputMask {...props.register?.(props?.name, props?.formconfig)} {...props}>
+          <Input />
+        </InputMask>
+      ) : (
+        <Input {...props.register?.(props?.name, props?.formconfig)} {...props} />
+      )}
       <span style={{fontSize: 12, color: 'red'}}>{props.error}</span>
     </div>
   );
