@@ -87,7 +87,7 @@ const NewUserPage = () => {
               required: true
             }}
           />
-          <Button type="submit">Cadastrar</Button>
+          <Button aria-label="submit" type="submit">Cadastrar</Button>
         </S.Card>
       </form>
     </S.Container>

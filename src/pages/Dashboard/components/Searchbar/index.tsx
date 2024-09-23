@@ -23,12 +23,13 @@ export const SearchBar = () => {
         placeholder="Digite um CPF válido"
         value={cpf}
         onChange={handleSearchBar}
+        aria-label="search"
       />
       <S.Actions>
-        <IconButton aria-label="refetch">
-          <HiRefresh onClick={handleRefetch} />
+        <IconButton aria-label="refetch" onClick={handleRefetch}>
+          <HiRefresh />
         </IconButton>
-        <Button onClick={() => goToNewAdmissionPage()}>Nova Admissão</Button>
+        <Button aria-label="Go to new admission page" onClick={() => goToNewAdmissionPage()}>Nova Admissão</Button>
       </S.Actions>
     </S.Container>
   );
